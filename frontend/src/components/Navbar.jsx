@@ -27,7 +27,7 @@ export default function Navbar({ user, onLogout }) {
             Subjects
           </NavLink>
           <NavLink to="/admin/shortage" className="nav-link">
-            Shortage List
+            Shortage
           </NavLink>
         </>
       );
@@ -46,11 +46,14 @@ export default function Navbar({ user, onLogout }) {
 
     links = (
       <>
-        {role_links}
+        <div className="nav-menu-group">{role_links}</div>
         <div className="user-profile">
-          <div className="user-details">
-            <span className="user-name">{user.name}</span>
-            <span className="user-role-badge">{user_info}</span>
+          <div className="user-avatar-badge">
+            <span className="avatar-dot"></span>
+            <div className="user-details">
+              <span className="user-name">{user.name}</span>
+              <span className="user-role-badge">{user_info}</span>
+            </div>
           </div>
           <button type="button" onClick={handleLogout} className="btn-logout">
             Logout
@@ -72,14 +75,22 @@ export default function Navbar({ user, onLogout }) {
   }
 
   return (
-    <nav className="navbar">
-      <div className="nav-container">
+    <header className="macbook-navbar-wrapper">
+      <nav className="macbook-navbar">
+        <div className="mac-window-controls">
+          <span className="mac-dot mac-dot-close"></span>
+          <span className="mac-dot mac-dot-minimize"></span>
+          <span className="mac-dot mac-dot-zoom"></span>
+        </div>
+
         <NavLink to="/" className="nav-brand">
+          <span className="brand-dot"></span>
           <span className="brand-name">EduTrack</span>
-          <span className="brand-tag">Attendance Portal</span>
+          <span className="brand-tag">v1.0</span>
         </NavLink>
+
         <div className="nav-links">{links}</div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }
