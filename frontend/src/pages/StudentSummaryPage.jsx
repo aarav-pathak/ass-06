@@ -93,35 +93,43 @@ export default function StudentSummaryPage({ user }) {
       <div className="page-header">
         <div>
           <h1 className="page-title">My Attendance Summary</h1>
-          <p className="page-subtitle">Track your subject attendance and shortage status</p>
+          <p className="page-subtitle">Track your subject attendance and shortage status in real time</p>
         </div>
         <button type="button" onClick={load_data} className="btn btn-secondary">
-          Refresh
+          Refresh Data
         </button>
       </div>
 
-      <div className="student-overview-card">
-        <div className="overview-profile">
+      <div className="student-hero-card">
+        <div className="student-profile-info">
+          <div className="student-avatar-badge">
+            {user_name.charAt(0).toUpperCase()}
+          </div>
           <div>
-            <h2>{user_name}</h2>
-            <p className="overview-meta">
-              Roll No: <strong>{roll_no}</strong> - Semester {sem} - Section {sec}
-            </p>
+            <h2 className="student-name-title">{user_name}</h2>
+            <div className="student-meta-tags">
+              <span className="meta-tag">Roll No: <strong>{roll_no}</strong></span>
+              <span className="meta-tag">Semester {sem}</span>
+              <span className="meta-tag">Section {sec}</span>
+            </div>
           </div>
         </div>
 
-        <div className="overview-stats">
-          <div className="stat-pill">
-            <span className="stat-label">Total Classes</span>
-            <span className="stat-num">{total_classes}</span>
+        <div className="student-kpi-grid">
+          <div className="kpi-card">
+            <span className="kpi-label">Total Classes</span>
+            <span className="kpi-value">{total_classes}</span>
+            <span className="kpi-sub">Across all subjects</span>
           </div>
-          <div className="stat-pill">
-            <span className="stat-label">Attended</span>
-            <span className="stat-num text-success">{attended_classes}</span>
+          <div className="kpi-card">
+            <span className="kpi-label">Classes Attended</span>
+            <span className="kpi-value text-success">{attended_classes}</span>
+            <span className="kpi-sub">Sessions present</span>
           </div>
-          <div className="stat-pill">
-            <span className="stat-label">Overall Percentage</span>
-            <span className={"stat-num " + overall_class}>{overall_pct}%</span>
+          <div className="kpi-card">
+            <span className="kpi-label">Overall Percentage</span>
+            <span className={"kpi-value " + overall_class}>{overall_pct}%</span>
+            <span className="kpi-sub">{overall_pct >= 75 ? "Above 75% requirement" : "Shortage alert (<75%)"}</span>
           </div>
         </div>
       </div>
@@ -129,7 +137,13 @@ export default function StudentSummaryPage({ user }) {
       {shortage_warning}
 
       <div className="section-block">
-        <h2 className="section-subtitle">Subject-Wise Breakdown</h2>
+        <div className="section-header-row">
+          <div>
+            <h2 className="section-subtitle">Subject-Wise Breakdown</h2>
+            <p className="section-hint">Click into any subject to review date-wise class logs</p>
+          </div>
+          <span className="count-pill">{subjects.length} Subjects</span>
+        </div>
 
         <div className="subjects-grid">
           {subjects.map((sub) => {
@@ -146,15 +160,17 @@ export default function StudentSummaryPage({ user }) {
             if (sub.isShortage) {
               advice = (
                 <div className="stretch-goal-banner">
+                  <span className="goal-icon">⚠️</span>
                   <div className="goal-text">
-                    Must attend <strong>{sub.classesNeeded} consecutive classes</strong> to reach 75%.
+                    Must attend <strong>{sub.classesNeeded} consecutive {sub.classesNeeded === 1 ? "class" : "classes"}</strong> to reach 75%.
                   </div>
                 </div>
               );
             } else {
               advice = (
                 <div className="safe-margin-banner">
-                  <span className="goal-text">Attendance is on track.</span>
+                  <span className="goal-icon">✓</span>
+                  <span className="goal-text">Attendance is on track. Good job!</span>
                 </div>
               );
             }
@@ -167,10 +183,10 @@ export default function StudentSummaryPage({ user }) {
             return (
               <div key={sub.subjectId} className="subject-card">
                 <div className="subject-card-header">
-                  <div>
+                  <div className="subject-card-titles">
                     <span className="code-pill">{sub.code}</span>
                     <h3 className="subject-name">{sub.name}</h3>
-                    <p className="subject-teacher">{sub.teacherName}</p>
+                    <p className="subject-teacher">Faculty: {sub.teacherName}</p>
                   </div>
                   <span className={"badge " + badge_class}>{sub.percentage}%</span>
                 </div>
@@ -184,9 +200,11 @@ export default function StudentSummaryPage({ user }) {
                   </div>
                   <div className="progress-meta-row">
                     <span>
-                      Attended: {sub.attendedClasses} / {sub.totalClasses} classes
+                      Attended: <strong>{sub.attendedClasses}</strong> / {sub.totalClasses} classes
                     </span>
-                    <span>{status_text}</span>
+                    <span className={"status-tag " + (sub.percentage >= 75 ? "tag-eligible" : "tag-shortage")}>
+                      {status_text}
+                    </span>
                   </div>
                 </div>
 
@@ -197,7 +215,7 @@ export default function StudentSummaryPage({ user }) {
                     to={"/my-attendance/" + sub.subjectId}
                     className="btn btn-outline btn-block"
                   >
-                    View Date-Wise History
+                    View Date-Wise History →
                   </Link>
                 </div>
               </div>
