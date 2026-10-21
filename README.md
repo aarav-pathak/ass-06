@@ -6,10 +6,10 @@ A full-stack MERN application for managing student attendance, calculating eligi
 
 ## Live URL
 
-- **Frontend (Vite on Vercel)**: `https://your-frontend-app.vercel.app` (or deployed Vercel domain)
-- **Backend (Express on Render)**: `https://your-backend-api.onrender.com` (or deployed Render domain)
+- **Frontend (Vite on Vercel)**: `https://dashly-rust.vercel.app`
+- **Backend (Express on Render)**: `https://ass-06.onrender.com`
 - **Local Development**:
-  - Frontend: `http://localhost:5173`
+  - Frontend: `http://localhost:5173` (or `http://localhost:5174`)
   - Backend: `http://localhost:5002`
 
 ---
