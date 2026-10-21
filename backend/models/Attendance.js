@@ -1,41 +1,22 @@
 const mongoose = require("mongoose");
 
-const attendanceRecordSchema = new mongoose.Schema(
-    {
-        student: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-            required: [true, "Student reference is required"]
-        },
-        status: {
-            type: String,
-            enum: ["Present", "Absent"],
-            required: [true, "Status is required"],
-            default: "Present"
-        }
-    },
-    { _id: false }
+const rec_schema = new mongoose.Schema(
+  {
+    student: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    status: { type: String, enum: ["Present", "Absent"], default: "Present" },
+  },
+  { _id: false }
 );
 
-const attendanceSchema = new mongoose.Schema(
-    {
-        subject: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Subject",
-            required: [true, "Subject is required"]
-        },
-        date: {
-            type: String,
-            required: [true, "Date is required"],
-            trim: true
-        },
-        records: [attendanceRecordSchema]
-    },
-    {
-        timestamps: true
-    }
+const att_schema = new mongoose.Schema(
+  {
+    subject: { type: mongoose.Schema.Types.ObjectId, ref: "Subject", required: true },
+    date: { type: String, required: true, trim: true },
+    records: [rec_schema],
+  },
+  { timestamps: true }
 );
 
-attendanceSchema.index({ subject: 1, date: 1 }, { unique: true });
+att_schema.index({ subject: 1, date: 1 }, { unique: true });
 
-module.exports = mongoose.model("Attendance", attendanceSchema);
+module.exports = mongoose.model("Attendance", att_schema);
