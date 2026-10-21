@@ -1,0 +1,21 @@
+{
+  "name": "class-attendance-management-system",
+  "version": "1.0.0",
+  "description": "PS1: Class Attendance Management System - MERN Stack with Role-based Login and Shortage Analytics",
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "seed": "npm run seed --prefix backend",
+    "server": "node backend/server.js",
+    "client": "npm run dev --prefix frontend",
+    "start": "node backend/server.js"
+  },
+  "keywords": [
+    "attendance",
+    "react",
+    "nodejs",
+    "express",
+    "mongodb"
+  ],
+  "author": "",
+  "license": "ISC"
+}
