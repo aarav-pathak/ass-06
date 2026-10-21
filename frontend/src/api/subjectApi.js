@@ -1,32 +1,24 @@
 import client from "./client";
 
 export const getSubjects = async (semester) => {
-  let params = {};
-  if (semester) {
-    params = { semester: semester };
-  }
-  const response = await client.get("/subjects", { params: params });
-  return response.data;
+  const params = semester ? { semester } : {};
+  return client.get("/subjects", params);
 };
 
 export const getSubjectById = async (id) => {
-  const response = await client.get("/subjects/" + id);
-  return response.data;
+  return client.get("/subjects/" + id);
 };
 
 export const createSubject = async (subjectData) => {
-  const response = await client.post("/subjects", subjectData);
-  return response.data;
+  return client.post("/subjects", subjectData);
 };
 
 export const updateSubject = async (id, subjectData) => {
-  const response = await client.put("/subjects/" + id, subjectData);
-  return response.data;
+  return client.put("/subjects/" + id, subjectData);
 };
 
 export const deleteSubject = async (id) => {
-  const response = await client.delete("/subjects/" + id);
-  return response.data;
+  return client.delete("/subjects/" + id);
 };
 
 export const get_subs = getSubjects;

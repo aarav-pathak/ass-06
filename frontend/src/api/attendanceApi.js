@@ -1,35 +1,27 @@
 import client from "./client";
 
 export const getAttendanceSheet = async (subjectId, date) => {
-  const response = await client.get("/attendance/sheet", {
-    params: { subjectId, date },
-  });
-  return response.data;
+  return client.get("/attendance/sheet", { subjectId, date });
 };
 
 export const markAttendance = async (payload) => {
-  const response = await client.post("/attendance", payload);
-  return response.data;
+  return client.post("/attendance", payload);
 };
 
 export const getStudentSummary = async () => {
-  const response = await client.get("/attendance/my-summary");
-  return response.data;
+  return client.get("/attendance/my-summary");
 };
 
 export const getStudentSubjectDetail = async (subjectId) => {
-  const response = await client.get(`/attendance/my-detail/${subjectId}`);
-  return response.data;
+  return client.get("/attendance/my-detail/" + subjectId);
 };
 
 export const getShortageList = async (filters = {}) => {
-  const response = await client.get("/attendance/shortage", { params: filters });
-  return response.data;
+  return client.get("/attendance/shortage", filters);
 };
 
 export const getDashboardStats = async () => {
-  const response = await client.get("/attendance/dashboard");
-  return response.data;
+  return client.get("/attendance/dashboard");
 };
 
 export const get_sheet = getAttendanceSheet;

@@ -1,16 +1,13 @@
 import client from "./client";
 
 export const login = async (credentials) => {
-  const response = await client.post("/auth/login", credentials);
-  return response.data;
+  return client.post("/auth/login", credentials);
 };
 
 export const register = async (userData) => {
-  const response = await client.post("/auth/register", userData);
-  return response.data;
+  return client.post("/auth/register", userData);
 };
 
 export const getMe = async () => {
-  const response = await client.get("/auth/me");
-  return response.data;
+  return client.get("/auth/me");
 };
