@@ -81,6 +81,7 @@ export default function LoginPage({ onLoginSuccess }) {
               id="email"
               name="email"
               type="email"
+              className="form-input"
               value={form.email}
               onChange={on_change}
               placeholder="e.g. admin@college.edu"
@@ -94,6 +95,7 @@ export default function LoginPage({ onLoginSuccess }) {
               id="password"
               name="password"
               type="password"
+              className="form-input"
               value={form.password}
               onChange={on_change}
               placeholder="Enter password"

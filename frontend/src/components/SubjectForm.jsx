@@ -72,6 +72,7 @@ export default function SubjectForm({
           id="name"
           name="name"
           type="text"
+          className="form-input"
           value={data.name}
           onChange={on_change}
           placeholder="e.g. Web Technology"
@@ -86,6 +87,7 @@ export default function SubjectForm({
             id="code"
             name="code"
             type="text"
+            className="form-input"
             value={data.code}
             onChange={on_change}
             placeholder="e.g. CS301"
@@ -99,6 +101,7 @@ export default function SubjectForm({
           <select
             id="semester"
             name="semester"
+            className="form-select"
             value={data.semester}
             onChange={on_change}
             required
@@ -118,6 +121,7 @@ export default function SubjectForm({
           id="teacherName"
           name="teacherName"
           type="text"
+          className="form-input"
           value={data.teacherName}
           onChange={on_change}
           placeholder="e.g. Dr. Anita Sen"

@@ -12,13 +12,35 @@ const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
-let cors_origin = true;
-if (process.env.NODE_ENV === "production" && process.env.CLIENT_URL) {
-    cors_origin = process.env.CLIENT_URL;
-}
+const allowed_origins = [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "http://localhost:3000"
+];
+
+const cors_handler = function (origin, callback) {
+    if (!origin) {
+        callback(null, true);
+        return;
+    }
+    if (allowed_origins.includes(origin)) {
+        callback(null, true);
+        return;
+    }
+    if (origin.endsWith(".vercel.app")) {
+        callback(null, true);
+        return;
+    }
+    if (process.env.CLIENT_URL && origin === process.env.CLIENT_URL) {
+        callback(null, true);
+        return;
+    }
+    callback(null, true);
+};
 
 app.use(cors({
-    origin: cors_origin,
+    origin: cors_handler,
+    credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));

@@ -48,6 +48,8 @@
   --radius-md: 12px;
   --radius-lg: 18px;
   --radius-pill: 9999px;
+  
+  color-scheme: dark;
 }
 
 * {
@@ -78,6 +80,67 @@ a {
   text-decoration: none;
 }
 
-button, input, select, textarea {
+/* Universal Dark Form Inputs and Controls */
+input, select, textarea {
   font-family: inherit;
+  color-scheme: dark;
+  background: rgba(15, 23, 42, 0.75);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.95rem;
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25), inset 0 1px 2px rgba(0, 0, 0, 0.3);
+  background: rgba(15, 23, 42, 0.95);
+  color: #ffffff;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #64748b;
+}
+
+/* Chrome/Safari Dark Autofill Fix */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #0f172a inset !important;
+  -webkit-text-fill-color: #f8fafc !important;
+  box-shadow: 0 0 0 1000px #0f172a inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2.25rem;
+  cursor: pointer;
+}
+
+select option {
+  background-color: #0f172a;
+  color: #f8fafc;
+  padding: 0.5rem;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) opacity(0.85);
+  cursor: pointer;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
 }

@@ -11,6 +11,8 @@
   max-width: 1140px;
   margin: 0 auto;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .app-footer {
@@ -637,10 +639,10 @@
 
 /* Glassmorphism Filters & Selectors */
 .card-selector-bar, .filter-bar {
-  background: rgba(17, 24, 39, 0.65);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(17, 24, 39, 0.75) !important;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
   border-radius: var(--radius-lg);
   padding: 1.25rem 1.5rem;
   display: flex;
@@ -648,38 +650,41 @@
   gap: 1.5rem;
   flex-wrap: wrap;
   box-shadow: var(--shadow-card);
+  margin-bottom: 1.5rem;
 }
 
 .selector-group, .filter-group {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.5rem;
   flex: 1;
   min-width: 220px;
 }
 
 .selector-group label, .filter-group label {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: #cbd5e1;
+  display: block;
 }
 
 .select-input, .date-input, .filter-select {
   width: 100%;
   padding: 0.65rem 1rem;
   border-radius: var(--radius-sm);
-  background: var(--bg-input);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #ffffff;
-  font-size: 0.88rem;
+  background: rgba(15, 23, 42, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+  font-size: 0.9rem;
   outline: none;
   transition: all 0.2s ease;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .select-input:focus, .date-input:focus, .filter-select:focus {
-  border-color: #60a5fa;
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
-  background: rgba(15, 23, 42, 0.85);
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.25), inset 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+  background: rgba(15, 23, 42, 0.95) !important;
 }
 
 .filter-info {
@@ -705,13 +710,16 @@
 .attendance-counters {
   display: flex;
   align-items: center;
-  gap: 1.15rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
 }
 
 .counter-item {
-  font-size: 0.84rem;
+  font-size: 0.88rem;
   color: #94a3b8;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .counter-item strong {
@@ -728,34 +736,39 @@
 .btn-toggle-status {
   padding: 0.45rem 1.35rem;
   border-radius: var(--radius-pill);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 700;
   cursor: pointer;
-  border: none;
-  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid transparent;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   letter-spacing: 0.03em;
+  display: inline-block;
+  min-width: 95px;
+  text-align: center;
 }
 
 .btn-present {
-  background: rgba(16, 185, 129, 0.18);
-  color: #34d399;
-  border: 1px solid rgba(52, 211, 153, 0.4);
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.15);
+  background: rgba(16, 185, 129, 0.2) !important;
+  color: #34d399 !important;
+  border: 1px solid rgba(52, 211, 153, 0.5) !important;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
 }
 
 .btn-present:hover {
-  background: rgba(16, 185, 129, 0.28);
+  background: rgba(16, 185, 129, 0.32) !important;
+  color: #ffffff !important;
 }
 
 .btn-absent {
-  background: rgba(239, 68, 68, 0.18);
-  color: #f87171;
-  border: 1px solid rgba(248, 113, 113, 0.4);
-  box-shadow: 0 0 10px rgba(239, 68, 68, 0.15);
+  background: rgba(239, 68, 68, 0.2) !important;
+  color: #f87171 !important;
+  border: 1px solid rgba(248, 113, 113, 0.5) !important;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.2);
 }
 
 .btn-absent:hover {
-  background: rgba(239, 68, 68, 0.28);
+  background: rgba(239, 68, 68, 0.32) !important;
+  color: #ffffff !important;
 }
 
 /* Form Submit Bar */
@@ -768,23 +781,24 @@
 
 /* Status Banners */
 .sheet-status-banner {
-  padding: 0.85rem 1.25rem;
+  padding: 0.95rem 1.35rem;
   border-radius: var(--radius-md);
   font-size: 0.88rem;
-  margin-bottom: 0.5rem;
-  backdrop-filter: blur(10px);
+  margin-bottom: 1.25rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-.status-edit {
-  background: rgba(59, 130, 246, 0.12);
+.status-existing, .status-edit {
+  background: rgba(59, 130, 246, 0.14);
   color: #93c5fd;
-  border: 1px solid rgba(59, 130, 246, 0.25);
+  border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
 .status-new {
-  background: rgba(16, 185, 129, 0.12);
+  background: rgba(16, 185, 129, 0.14);
   color: #6ee7b7;
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 /* Shortage Recovery Pill */
@@ -872,17 +886,19 @@
 }
 
 /* Auth Pages (Login / Register) */
-.auth-page {
-  min-height: calc(100vh - 180px);
+.auth-wrapper, .auth-page {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 0;
+  padding: 3rem 1.25rem;
+  width: 100%;
 }
 
 .auth-card {
   width: 100%;
-  max-width: 440px;
+  max-width: 450px;
+  margin: auto;
   background: rgba(17, 24, 39, 0.75);
   backdrop-filter: blur(28px) saturate(200%);
   -webkit-backdrop-filter: blur(28px) saturate(200%);
@@ -899,17 +915,116 @@
   margin-bottom: 1.75rem;
 }
 
-.auth-title {
+.auth-header h2, .auth-title {
   font-size: 1.65rem;
   font-weight: 800;
   color: #ffffff;
   letter-spacing: -0.03em;
+  margin-bottom: 0.35rem;
 }
 
-.auth-subtitle {
+.auth-header p, .auth-subtitle {
   color: var(--text-muted);
   font-size: 0.88rem;
-  margin-top: 0.35rem;
+  margin-top: 0.25rem;
+}
+
+/* Quick Fill & Demo Login Buttons in Login */
+.demo-accounts-box, .quick-fill-box {
+  margin-top: 1.5rem;
+  padding: 1.1rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+}
+
+.demo-title, .quick-fill-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-light);
+  font-weight: 700;
+  margin-bottom: 0.65rem;
+  text-align: center;
+}
+
+.demo-buttons, .quick-fill-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+.btn-demo, .btn-fill {
+  width: 100%;
+  padding: 0.58rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-demo:hover, .btn-fill:hover {
+  background: rgba(59, 130, 246, 0.22);
+  border-color: rgba(96, 165, 250, 0.45);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.25);
+}
+
+/* Role Switch / Selector */
+.role-switch, .role-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+  background: rgba(15, 23, 42, 0.85);
+  padding: 0.35rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.role-btn {
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
+}
+
+.role-btn:hover {
+  color: #ffffff;
+}
+
+.role-btn.active {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.student-fields-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.register-card {
+  max-width: 520px;
 }
 
 .auth-footer {
@@ -921,84 +1036,16 @@
   color: var(--text-muted);
 }
 
-.auth-footer a {
+.auth-footer a, .auth-link {
   color: #60a5fa;
   font-weight: 600;
   margin-left: 0.25rem;
+  transition: color 0.15s ease;
 }
 
-.auth-footer a:hover {
+.auth-footer a:hover, .auth-link:hover {
+  color: #93c5fd;
   text-decoration: underline;
-}
-
-/* Role Selector Pill */
-.role-selector {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.35rem;
-  background: rgba(15, 23, 42, 0.85);
-  padding: 0.3rem;
-  border-radius: var(--radius-pill);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: 1.25rem;
-}
-
-.role-btn {
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-pill);
-  border: none;
-  background: transparent;
-  color: #94a3b8;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.role-btn.active {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
-}
-
-/* Quick Fill Buttons in Login */
-.quick-fill-box {
-  margin-top: 1.25rem;
-  padding: 0.85rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius-md);
-}
-
-.quick-fill-label {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-light);
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.quick-fill-buttons {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.btn-fill {
-  flex: 1;
-  padding: 0.38rem 0.65rem;
-  font-size: 0.76rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #e2e8f0;
-  border-radius: var(--radius-xs);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.btn-fill:hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: #ffffff;
 }
 
 /* Alerts */
